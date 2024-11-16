@@ -1,8 +1,8 @@
 <script>
 // Import elements
 import Header from './components/partials/Header.vue';
-import Main from './components/partials/Main.vue';
 import Footer from './components/partials/Footer.vue';
+import { RouterView } from 'vue-router';
 
 export default {
     data() {
@@ -11,15 +11,16 @@ export default {
       },
       components:{
         Header,
-        Main,
+        RouterView,
         Footer,
       }
-  };
+  }
 </script>
 
 <template>
-  <Header></Header>
-  <Footer></Footer>
+  <Header />
+  <RouterView />
+  <Footer />
 </template>
 
 <style lang="scss">

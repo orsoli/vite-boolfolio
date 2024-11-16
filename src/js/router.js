@@ -6,10 +6,10 @@ import Projects from "../pages/Projects.vue";
 import Contact from "../pages/Contact.vue";
 
 const routes = [
-  { path: "/", component: Home },
-  { path: "/about", component: About },
-  { path: "/projects", component: Projects },
-  { path: "/contact", component: Contact },
+  { path: "/", component: Home, name: "home" },
+  { path: "/about", component: About, name: "about" },
+  { path: "/projects", component: Projects, name: "projects" },
+  { path: "/contact", component: Contact, name: "contact" },
 ];
 
 const router = createRouter({
@@ -17,4 +17,4 @@ const router = createRouter({
   routes,
 });
 
-export default { router };
+export default router;
