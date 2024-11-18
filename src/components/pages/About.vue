@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'Home',
+    name: 'About',
     data() {
         return {
           
@@ -18,6 +18,7 @@ export default {
 </script>
 
 <template>
+    <h1>ABOUT</h1>
 </template>
 
 <style lang='scss' scoped></style>

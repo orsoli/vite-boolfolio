@@ -1,5 +1,7 @@
 <script>
 // Import
+import AppLoader from '../BaseComponents/AppLoader.vue';
+
 import axios from 'axios';
 
 export default {
@@ -9,7 +11,12 @@ export default {
             projectsUrl: 'http://127.0.0.1:8000/api/projects', // Save endpoint api
             imageStoreUrl: 'http://127.0.0.1:8000/storage/', // Save url from server
             projects:[], // Save projects in array
+            loading: true, // Flag to show Apploading
         };
+    },
+
+    components: {
+        AppLoader,
     },
 
     methods: {
@@ -25,6 +32,7 @@ export default {
                 })
                 .finally(() => {
                     console.log("Geting api Projects results is finished") // Print message after api riturn results
+                    this.loading = false;
                 });
         }
     },
@@ -42,7 +50,11 @@ export default {
 </script>
 
 <template>
-    <main>
+    <!-- Loader -->
+    <AppLoader v-if="loading"/>
+
+    <!-- Main -->
+    <main v-else>
         <div class="container py-4">
             <div class="main-title">
                 <h1 class="text-center mb-5">

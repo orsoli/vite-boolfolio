@@ -18,11 +18,10 @@ export default {
 </script>
 
 <template>
-  <Header />
-  <RouterView />
-  <Footer />
-</template>
-
+    <Header />
+    <RouterView />
+    <Footer />
+  </template>
 <style lang="scss">
 @use 'bootstrap/scss/bootstrap.scss';
 </style>
