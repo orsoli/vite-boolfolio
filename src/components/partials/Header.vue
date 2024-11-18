@@ -9,7 +9,7 @@ export default {
             'Projects',
             'About',
             'Contact',
-          ]
+          ],
 
         };
     },
@@ -33,7 +33,7 @@ export default {
                     <!-- NavBar navs list -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item" v-for="(page, i) in pages" :key="i">
-                            <router-link :to="{ name: page.toLocaleLowerCase() }" class="navbar-brand fs-6">
+                            <router-link :to="{ name: page.toLocaleLowerCase() }" class="navbar-brand fs-6" active-class="active">
                                 {{page}}
                             </router-link>
                         </li>
@@ -51,4 +51,7 @@ export default {
 </template>
 
 <style lang='scss' scoped>
+    .active{
+        border-bottom: 1px solid green;
+    }
 </style>

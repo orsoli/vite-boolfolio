@@ -1,5 +1,6 @@
 <script>
 export default {
+    name: 'Apploader',
     data() {
         return {
           
