@@ -57,6 +57,9 @@ export default {
         getPreviousPage(){
             if(this.currentPage > 1) this.currentPage --;
             this.getProjectsResults(this.currentPage);
+        },
+        getNumberPage(page){
+            this.getProjectsResults(page)
         }
     },
 
@@ -89,15 +92,15 @@ export default {
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">
-                            <button class="page-link" aria-label="Previous" @click="getPreviousPage">
+                            <button class="page-link" :class="{ 'disabled' : links[0].url === null }" aria-label="Previous" @click="getPreviousPage">
                                 <span aria-hidden="true">&laquo;</span>
                             </button>
                         </li>
                         <li class="page-item" v-for="link in links" :key="link.label">
-                            <button class="page-link" v-if="link.active">{{link.label}}</button>
+                            <button class="page-link" :class="{'active' : link.active}" v-if="!isNaN(parseInt(link.label))" @click="getNumberPage(link.label)">{{link.label}}</button>
                         </li>
                         <li class="page-item">
-                            <button class="page-link" aria-label="Next" @click="getNextPage">
+                            <button class="page-link" :class="{ 'disabled' : links[links.length - 1].url === null }" aria-label="Next" @click="getNextPage">
                                 <span aria-hidden="true">&raquo;</span>
                             </button>
                         </li>
