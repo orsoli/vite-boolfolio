@@ -11,8 +11,11 @@ export default {
     data() {
         return {
             // Variables
-            projectsUrl: 'http://127.0.0.1:8000/api/projects', // Save endpoint api
-            projects:[], // Save projects in array
+            projectsUrl: 'http://127.0.0.1:8000/api/projects', // Store endpoint api
+            projects:[], // Store projects in array
+            links: [], // Store links geting from api
+            lastPage: 1, // Store initial value of last page projects
+            currentPage: 1, // Store current page of projects
             store, // Store.js
         };
     },
@@ -23,25 +26,42 @@ export default {
     },
 
     methods: {
-        getProjectsResults(){
-            axios.get(this.projectsUrl).then((response) => {
+        getProjectsResults(currentPage){
+            axios.get(this.projectsUrl,{
+                params: {
+                    page: currentPage
+                }
+            }).then((response) => {
 
-             console.log(response.data.results) // Console log testing
+                console.log(response.data.results.data) // Console log testing
+                console.log(response.data.results.links) // Console log testing
 
-             this.projects = response.data.results // Save the results in this projects array
-             this.store.loading = false;
+                this.projects = response.data.results.data // Save the results in this projects array
+                this.links = response.data.results.links
+                this.lastPage = parseInt(this.links[this.links.length - 2].label); // Store the last page geting from api
             })
-                .catch((error) => {
-                    console.log(error); // Print errors in console
-                })
-                .finally(() => {
-                    console.log("Geting api Projects results is finished") // Print message after api riturn results
+            .catch((error) => {
+                console.log(error); // Print errors in console
+            })
+            .finally(() => {
+                console.log("Geting api Projects results is finished") // Print message after api riturn results
+                this.store.loading = false;
                 });
+        },
+
+        // Paginator methods
+        getNextPage(){
+            if(this.currentPage < this.lastPage) this.currentPage ++;
+            this.getProjectsResults(this.currentPage)
+        },
+        getPreviousPage(){
+            if(this.currentPage > 1) this.currentPage --;
+            this.getProjectsResults(this.currentPage);
         }
     },
 
     mounted(){
-        this.getProjectsResults();
+        this.getProjectsResults(this.currentPage);
     }
 };
 </script>
@@ -69,17 +89,17 @@ export default {
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <button class="page-link" aria-label="Previous" @click="getPreviousPage">
                                 <span aria-hidden="true">&laquo;</span>
-                            </a>
+                            </button>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item" v-for="link in links" :key="link.label">
+                            <button class="page-link" v-if="link.active">{{link.label}}</button>
+                        </li>
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <button class="page-link" aria-label="Next" @click="getNextPage">
                                 <span aria-hidden="true">&raquo;</span>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </nav>
