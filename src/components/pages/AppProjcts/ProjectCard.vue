@@ -1,8 +1,10 @@
 <script>
+// Imports
+import { store } from '../../../js/store';
 export default {
     data() {
         return {
-            imageStoreUrl: 'http://127.0.0.1:8000/storage/', // Save url from server
+            store,
         };
     },
 
@@ -23,7 +25,7 @@ export default {
 
     computed:{
         projectImage(){
-            return this.imageStoreUrl+this.project.image_url;
+            return this.store.imageStoreUrl+this.project.image_url;
         }
     },
 };

@@ -12,7 +12,6 @@ export default {
         return {
             // Variables
             projectsUrl: 'http://127.0.0.1:8000/api/projects', // Store endpoint api
-            projects:[], // Store projects in array
             links: [], // Store links geting from api
             lastPage: 1, // Store initial value of last page projects
             currentPage: 1, // Store current page of projects
@@ -36,7 +35,7 @@ export default {
                 console.log(response.data.results.data) // Console log testing
                 console.log(response.data.results.links) // Console log testing
 
-                this.projects = response.data.results.data // Save the results in this projects array
+                this.store.projects = response.data.results.data // Save the results in this projects array
                 this.links = response.data.results.links
                 this.lastPage = parseInt(this.links[this.links.length - 2].label); // Store the last page geting from api
             })
@@ -87,7 +86,7 @@ export default {
                 </h1>
             </div>
              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                    <ProjectCard v-for="project in projects" 
+                    <ProjectCard v-for="project in store.projects" 
                     :key="project.id"
                     :project="project" 
                     @click="showProject(project.id)"
