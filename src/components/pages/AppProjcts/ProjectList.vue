@@ -63,7 +63,7 @@ export default {
         }
     },
 
-    mounted(){
+    created(){
         this.getProjectsResults(this.currentPage);
     }
 };

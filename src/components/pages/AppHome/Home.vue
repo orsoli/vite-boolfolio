@@ -41,7 +41,7 @@ export default {
 <style lang='scss' scoped>
 
 .home-wrapper{
-    background-image: url('/public/img/bg/web-dev-bg.jpg');
+    background-image: url('/img/bg/web-dev-bg.jpg');
     background-size: cover;
     background-position: center;
 }

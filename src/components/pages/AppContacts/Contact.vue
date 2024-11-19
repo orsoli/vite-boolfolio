@@ -19,7 +19,7 @@ export default {
 
 <template>
     <div class="card text-bg-dark rounded-0">
-        <img src="/public/img/bg/web-dev-bg.jpg" class="card-img rounded-0" alt="web-dev img" id="contact-bg">
+        <img src="/img/bg/web-dev-bg.jpg" class="card-img rounded-0" alt="web-dev img" id="contact-bg">
         <div class="card-img-overlay">
             <h1 class="card-title fw-bold">Contact</h1>
             <p class="card-text"><small>Lets talk about your next project</small></p>
