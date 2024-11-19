@@ -18,15 +18,13 @@ export default {
 </script>
 
 <template>
-    <div class="loader-container">
+     <main class="main-loader">
         <div class="loader"></div>
-    </div>
+    </main>
 </template>
 
 <style lang='scss' scoped>
-.loader-container{
-    height: 100vh;
-    .loader {
+.loader {
         width: fit-content;
         font-weight: bold;
         font-family: sans-serif;
@@ -38,10 +36,13 @@ export default {
         top: 50%;
         left: 50%;
         translate: -50% -50%;
-    }
-    .loader:before {
+}
+.loader:before {
         content:"Loading..."
-    }
 }
 @keyframes l2 {to{background-size: 100% 3px}}
+
+.main-loader{
+    height: 100vh;
+}
 </style>

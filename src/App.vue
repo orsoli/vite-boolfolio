@@ -2,11 +2,14 @@
 // Import elements
 import Header from './components/partials/Header.vue';
 import Footer from './components/partials/Footer.vue';
+
 import { RouterView } from 'vue-router';
+
 
 export default {
     data() {
         return {
+          // Variables
         };
       },
       components:{
@@ -18,9 +21,9 @@ export default {
 </script>
 
 <template>
-    <Header />
-    <RouterView />
-    <Footer />
+      <Header />
+      <RouterView />
+      <Footer />
   </template>
 <style lang="scss">
 @use 'bootstrap/scss/bootstrap.scss';
