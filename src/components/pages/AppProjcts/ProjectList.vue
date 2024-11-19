@@ -60,6 +60,11 @@ export default {
         },
         getNumberPage(page){
             this.getProjectsResults(page)
+        },
+
+        // Define function to push in router the id project selected
+        showProject(id){
+            this.$router.push({name: 'project.details', params: {id: id}})
         }
     },
 
@@ -82,10 +87,11 @@ export default {
                 </h1>
             </div>
              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                <ProjectCard v-for="project in projects" 
-                        :key="project.id"
-                        :project="project" 
-                />
+                    <ProjectCard v-for="project in projects" 
+                    :key="project.id"
+                    :project="project" 
+                    @click="showProject(project.id)"
+                    />
             </div>
             <!-- Paginator -->
             <div class="paginate mt-5">
